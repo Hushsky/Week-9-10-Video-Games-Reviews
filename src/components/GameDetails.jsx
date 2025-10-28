@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import renderStars from "@/src/components/Stars.jsx";
 import SimpleGamePoster from "@/src/components/SimpleGamePoster.jsx";
+import GameImage from "@/src/components/GameImage.jsx";
 
 const GameDetails = ({
   game,
@@ -20,7 +21,7 @@ const GameDetails = ({
       {showPoster ? (
         <SimpleGamePoster game={game} width={300} height={400} />
       ) : (
-        <img src={game.photo} alt={game.name} />
+        <GameImage src={game.photo} alt={game.name} />
       )}
 
       <div className="actions">

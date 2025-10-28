@@ -25,6 +25,26 @@ function getRandomGameColor() {
   return colors[randomNumberBetween(0, colors.length - 1)];
 }
 
+// Function to generate game poster URL using multiple services
+function generateGamePosterUrl(gameName, genre) {
+  // Use different services for variety
+  const services = [
+    // Service 1: Placeholder with game name (most reliable)
+    `https://via.placeholder.com/300x400/${getRandomGameColor()}/ffffff?text=${encodeURIComponent(gameName)}`,
+    
+    // Service 2: Placeholder with genre
+    `https://via.placeholder.com/300x400/${getRandomGameColor()}/ffffff?text=${encodeURIComponent(genre)}`,
+    
+    // Service 3: Picsum with game-themed colors
+    `https://picsum.photos/300/400?random=${gameName.length}`,
+    
+    // Service 4: Lorem Picsum with specific seed
+    `https://picsum.photos/seed/${gameName.replace(/\s+/g, '')}/300/400`,
+  ];
+  
+  return services[randomNumberBetween(0, services.length - 1)];
+}
+
 export async function generateFakeGamesAndReviews() {
   const gamesToAdd = 5;
   const data = [];
@@ -62,14 +82,17 @@ export async function generateFakeGamesAndReviews() {
         ) / ratingsData.length
       : 0;
 
+    const gameName = randomData.gameNames[
+      randomNumberBetween(0, randomData.gameNames.length - 1)
+    ];
+    
+    const gameGenre = randomData.gameGenres[
+      randomNumberBetween(0, randomData.gameGenres.length - 1)
+    ];
+
     const gameData = {
-      genre:
-        randomData.gameGenres[
-          randomNumberBetween(0, randomData.gameGenres.length - 1)
-        ],
-      name: randomData.gameNames[
-        randomNumberBetween(0, randomData.gameNames.length - 1)
-      ],
+      genre: gameGenre,
+      name: gameName,
       avgRating,
       platform: randomData.gamePlatforms[
         randomNumberBetween(0, randomData.gamePlatforms.length - 1)
@@ -80,7 +103,7 @@ export async function generateFakeGamesAndReviews() {
         0
       ),
       price: randomNumberBetween(1, 4),
-      photo: `https://via.placeholder.com/300x400/${getRandomGameColor()}/ffffff?text=${encodeURIComponent(gameData.name)}`,
+      photo: generateGamePosterUrl(gameName, gameGenre),
       timestamp: gameTimestamp,
     };
 

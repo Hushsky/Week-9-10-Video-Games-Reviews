@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import renderStars from "@/src/components/Stars.jsx";
 import { getGamesSnapshot } from "@/src/lib/firebase/firestore.js";
 import Filters from "@/src/components/Filters.jsx";
+import GameImage from "@/src/components/GameImage.jsx";
 
 const GameItem = ({ game }) => (
   <li key={game.id}>
@@ -27,7 +28,7 @@ const ActiveGame = ({ game }) => (
 
 const ImageCover = ({ photo, name }) => (
   <div className="image-cover">
-    <img src={photo} alt={name} />
+    <GameImage src={photo} alt={name} />
   </div>
 );
 
