@@ -1,9 +1,8 @@
 // This component shows game metadata, and offers some actions to the user like uploading a new game image, and adding a review.
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import renderStars from "@/src/components/Stars.jsx";
-import GamePosterGenerator from "@/src/components/GamePosterGenerator.jsx";
-import { generateAIGamePoster } from "@/src/lib/gamePosterGenerator.js";
+import SimpleGamePoster from "@/src/components/SimpleGamePoster.jsx";
 
 const GameDetails = ({
   game,
@@ -13,34 +12,13 @@ const GameDetails = ({
   isOpen,
   children,
 }) => {
-  const [useGeneratedPoster, setUseGeneratedPoster] = useState(false);
-  const [generatedPosterUrl, setGeneratedPosterUrl] = useState(null);
-
-  // Generate AI poster when component mounts or game changes
-  useEffect(() => {
-    const generatePoster = async () => {
-      try {
-        const posterUrl = await generateAIGamePoster(game.name, game.genre, game.platform);
-        setGeneratedPosterUrl(posterUrl);
-      } catch (error) {
-        console.error('Error generating poster:', error);
-      }
-    };
-
-    generatePoster();
-  }, [game.name, game.genre, game.platform]);
+  const [showPoster, setShowPoster] = useState(false);
 
   return (
     <section className="img__section">
-      {/* Show either uploaded image, generated poster, or canvas-generated poster */}
-      {useGeneratedPoster ? (
-        <div className="poster-container">
-          {generatedPosterUrl ? (
-            <img src={generatedPosterUrl} alt={game.name} />
-          ) : (
-            <GamePosterGenerator game={game} width={300} height={400} />
-          )}
-        </div>
+      {/* Show either uploaded image or generated poster */}
+      {showPoster ? (
+        <SimpleGamePoster game={game} width={300} height={400} />
       ) : (
         <img src={game.photo} alt={game.name} />
       )}
@@ -74,10 +52,10 @@ const GameDetails = ({
         {/* Toggle between uploaded image and generated poster */}
         <button
           className="poster-toggle"
-          onClick={() => setUseGeneratedPoster(!useGeneratedPoster)}
-          title={useGeneratedPoster ? "Show uploaded image" : "Show generated poster"}
+          onClick={() => setShowPoster(!showPoster)}
+          title={showPoster ? "Show uploaded image" : "Show generated poster"}
         >
-          {useGeneratedPoster ? "📷" : "🎨"}
+          {showPoster ? "📷" : "🎨"}
         </button>
       </div>
 

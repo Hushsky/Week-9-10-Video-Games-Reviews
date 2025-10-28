@@ -21,7 +21,7 @@ const GameItem = ({ game }) => (
 const ActiveGame = ({ game }) => (
   <div>
     <ImageCover photo={game.photo} name={game.name} />
-    <GameDetails game={game} />
+    <GameItemDetails game={game} />
   </div>
 );
 
@@ -31,7 +31,7 @@ const ImageCover = ({ photo, name }) => (
   </div>
 );
 
-const GameDetails = ({ game }) => (
+const GameItemDetails = ({ game }) => (
   <div className="game__details">
     <h2>{game.name}</h2>
     <GameRating game={game} />
