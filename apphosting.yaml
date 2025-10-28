@@ -1,3 +1,7 @@
 runConfig:
   minInstances: 0
   maxInstances: 2
+  cpu: 1
+  memory: 1Gi
+  timeout: 300s
+  concurrency: 1000

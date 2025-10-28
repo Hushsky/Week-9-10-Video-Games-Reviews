@@ -1,6 +1,8 @@
 // AI Game Poster Generator
 // This utility can generate game posters using AI services
 
+/* global Promise */
+
 export const generateAIGamePoster = async (gameName, genre, platform) => {
   // Option 1: Using DALL-E API (requires OpenAI API key)
   const generateWithDALLE = async () => {
