@@ -1,7 +1,6 @@
 {
   "projects": {
-    "friendlyeats-codelab": "fir-project-78a47",
-    "videogamesreview": "week-9-and-10-projects"
+    "default": "week-9-and-10-projects"
   },
   "targets": {},
   "etags": {}

@@ -157,7 +157,7 @@ export async function getGames(db = db, filters = {}) {
 export function getGamesSnapshot(cb, filters = {}) {
   // Validate that callback is a function
   if (typeof cb !== "function") {
-    console.log("Error: The callback parameter is not a function");
+    console.error("Error: The callback parameter is not a function");
     return;
   }
 
@@ -189,7 +189,7 @@ export function getGamesSnapshot(cb, filters = {}) {
 export async function getGameById(db, gameId) {
   // Validate that game ID is provided
   if (!gameId) {
-    console.log("Error: Invalid ID received: ", gameId);
+    console.error("Error: Invalid ID received: ", gameId);
     return;
   }
   
@@ -216,7 +216,7 @@ export function getGameSnapshotById(gameId, cb) {
 export async function getReviewsByGameId(db, gameId) {
   // Validate that game ID is provided
   if (!gameId) {
-    console.log("Error: Invalid gameId received: ", gameId);
+    console.error("Error: Invalid gameId received: ", gameId);
     return;
   }
 
@@ -245,7 +245,7 @@ export async function getReviewsByGameId(db, gameId) {
 export function getReviewsSnapshotByGameId(gameId, cb) {
   // Validate that game ID is provided
   if (!gameId) {
-    console.log("Error: Invalid gameId received: ", gameId);
+    console.error("Error: Invalid gameId received: ", gameId);
     return;
   }
 
@@ -296,7 +296,7 @@ export async function addFakeGamesAndReviews() {
       }
     } catch (e) {
       // Log errors but continue processing other games
-      console.log("There was an error adding the document");
+      console.error("There was an error adding the document");
       console.error("Error adding document: ", e);
     }
   }

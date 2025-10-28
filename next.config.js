@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  // Remove deprecated eslint config - use .eslintrc.json instead
+  experimental: {
+    // Enable any experimental features if needed
   },
 };
 
